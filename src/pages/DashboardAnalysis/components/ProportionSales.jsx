@@ -16,12 +16,7 @@ const ProportionSales = ({
     loading={loading}
     className={styles.salesCard}
     bordered={false}
-    title={
-      <FormattedMessage
-        id="dashboardanalysis.analysis.the-proportion-of-sales"
-        defaultMessage="The Proportion of Sales"
-      />
-    }
+    title={'当月金额类别占比'}
     style={{
       height: '100%',
     }}
@@ -31,13 +26,13 @@ const ProportionSales = ({
         <div className={styles.salesTypeRadio}>
           <Radio.Group value={salesType} onChange={handleChangeSalesType}>
             <Radio.Button value="all">
-              <FormattedMessage id="dashboardanalysis.channel.all" defaultMessage="ALL" />
+              全部
             </Radio.Button>
             <Radio.Button value="online">
-              <FormattedMessage id="dashboardanalysis.channel.online" defaultMessage="Online" />
+              收入
             </Radio.Button>
             <Radio.Button value="stores">
-              <FormattedMessage id="dashboardanalysis.channel.stores" defaultMessage="Stores" />
+              支出
             </Radio.Button>
           </Radio.Group>
         </div>
@@ -45,22 +40,23 @@ const ProportionSales = ({
     }
   >
     <div>
-      <h4
+      {/* <h4
         style={{
           marginTop: 8,
           marginBottom: 32,
         }}
       >
         <FormattedMessage id="dashboardanalysis.analysis.sales" defaultMessage="Sales" />
-      </h4>
+      </h4> */}
       <Pie
         hasLegend
-        subTitle={<FormattedMessage id="dashboardanalysis.analysis.sales" defaultMessage="Sales" />}
+        subTitle={'总额'}
         total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
         data={salesPieData}
         valueFormat={value => <Yuan>{value}</Yuan>}
-        height={248}
+        height={400}
         lineWidth={4}
+        style={{marginTop:'50px'}}
       />
     </div>
   </Card>

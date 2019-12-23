@@ -1,8 +1,10 @@
-import { Avatar, Card, Dropdown, Icon, List, Menu, Tooltip } from 'antd';
+import { Avatar, Card, Dropdown, Icon, List, Menu, Tooltip, Button } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import numeral from 'numeral';
+import AddButtonother from './AddButtonother';
 import stylesApplications from './index.less';
+import AddButton from './AddButton';
 
 export function formatWan(val) {
   const v = val * 1;
@@ -12,6 +14,7 @@ export function formatWan(val) {
   if (val > 10000) {
     result = (
       <span>
+        ￥
         {Math.floor(val / 10000)}
         <span
           style={{
@@ -46,7 +49,7 @@ class Applications extends Component {
         </div>
         <div>
           <p>预算</p>
-          <p>{newUser}</p>
+          <p>{'￥' + newUser}</p>
         </div>
       </div>
     );
@@ -73,18 +76,19 @@ class Applications extends Component {
                 paddingBottom: 20,
               }}
               actions={[
-                <Tooltip key="enter" title="进入">
-                  <Icon type="enter" />
-                </Tooltip>,
+                // <Tooltip key="enter" title="进入">
+                //   <Icon type="enter" />
+                // </Tooltip>,
                 <Tooltip title="编辑" key="edit">
-                  <Icon type="edit" />
+                  {/* <Button icon="edit" /> */}
+                  <AddButtonother lbname={item.title} budget={item.newUser}/>
                 </Tooltip>,
                 <Tooltip title="删除" key="delete">
-                  <Icon type="delete" />
+                  <Button icon="delete" />
                 </Tooltip>,
               ]}
             >
-              <Card.Meta avatar={<Avatar size="small" src={item.avatar} />} title={item.title} />
+              <Card.Meta avatar={<Avatar size="meidum" icon="account-book" style={{ backgroundColor: '#1890ff' }}/>} title={item.title} />
               <div className={stylesApplications.cardItemContent}>
                 <CardInfo
                   activeUser={formatWan(item.activeUser)}

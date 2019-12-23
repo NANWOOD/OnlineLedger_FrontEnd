@@ -23,34 +23,12 @@ const IntroduceRow = ({ loading, visitData }) => (
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}
-        title={
-          <FormattedMessage
-            id="dashboardanalysis.analysis.total-sales"
-            defaultMessage="Total Sales"
-          />
-        }
-        action={
-          <Tooltip
-            title={
-              <FormattedMessage
-                id="dashboardanalysis.analysis.introduce"
-                defaultMessage="Introduce"
-              />
-            }
-          >
-            <Icon type="info-circle-o" />
-          </Tooltip>
-        }
+        title={'当月开支'}
         loading={loading}
         total={() => <Yuan>126560</Yuan>}
         footer={
           <Field
-            label={
-              <FormattedMessage
-                id="dashboardanalysis.analysis.day-sales"
-                defaultMessage="Daily Sales"
-              />
-            }
+            label={'当日开支'}
             value={`￥${numeral(12423).format('0,0')}`}
           />
         }
@@ -62,7 +40,7 @@ const IntroduceRow = ({ loading, visitData }) => (
             marginRight: 16,
           }}
         >
-          <FormattedMessage id="dashboardanalysis.analysis.week" defaultMessage="Weekly Changes" />
+          月同比
           <span className={styles.trendText}>12%</span>
         </Trend>
         <Trend flag="down">
@@ -71,33 +49,44 @@ const IntroduceRow = ({ loading, visitData }) => (
         </Trend>
       </ChartCard>
     </Col>
-
+    <Col {...topColResponsiveProps}>
+      <ChartCard
+        bordered={false}
+        title={'当月收入'}
+        loading={loading}
+        total={() => <Yuan>126560</Yuan>}
+        footer={
+          <Field
+            label={'当日收入'}
+            value={`￥${numeral(12423).format('0,0')}`}
+          />
+        }
+        contentHeight={46}
+      >
+        <Trend
+          flag="up"
+          style={{
+            marginRight: 16,
+          }}
+        >
+          月同比
+          <span className={styles.trendText}>12%</span>
+        </Trend>
+        <Trend flag="down">
+          <FormattedMessage id="dashboardanalysis.analysis.day" defaultMessage="Daily Changes" />
+          <span className={styles.trendText}>11%</span>
+        </Trend>
+      </ChartCard>
+    </Col>
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}
         loading={loading}
-        title={<FormattedMessage id="dashboardanalysis.analysis.visits" defaultMessage="Visits" />}
-        action={
-          <Tooltip
-            title={
-              <FormattedMessage
-                id="dashboardanalysis.analysis.introduce"
-                defaultMessage="Introduce"
-              />
-            }
-          >
-            <Icon type="info-circle-o" />
-          </Tooltip>
-        }
+        title={'当月消费次数'}
         total={numeral(8846).format('0,0')}
         footer={
           <Field
-            label={
-              <FormattedMessage
-                id="dashboardanalysis.analysis.day-visits"
-                defaultMessage="Daily Visits"
-              />
-            }
+            label={'日消费次数'}
             value={numeral(1234).format('0,0')}
           />
         }
@@ -108,62 +97,9 @@ const IntroduceRow = ({ loading, visitData }) => (
     </Col>
     <Col {...topColResponsiveProps}>
       <ChartCard
-        bordered={false}
-        loading={loading}
-        title={
-          <FormattedMessage id="dashboardanalysis.analysis.payments" defaultMessage="Payments" />
-        }
-        action={
-          <Tooltip
-            title={
-              <FormattedMessage
-                id="dashboardanalysis.analysis.introduce"
-                defaultMessage="Introduce"
-              />
-            }
-          >
-            <Icon type="info-circle-o" />
-          </Tooltip>
-        }
-        total={numeral(6560).format('0,0')}
-        footer={
-          <Field
-            label={
-              <FormattedMessage
-                id="dashboardanalysis.analysis.conversion-rate"
-                defaultMessage="Conversion Rate"
-              />
-            }
-            value="60%"
-          />
-        }
-        contentHeight={46}
-      >
-        <MiniBar data={visitData} />
-      </ChartCard>
-    </Col>
-    <Col {...topColResponsiveProps}>
-      <ChartCard
         loading={loading}
         bordered={false}
-        title={
-          <FormattedMessage
-            id="dashboardanalysis.analysis.operational-effect"
-            defaultMessage="Operational Effect"
-          />
-        }
-        action={
-          <Tooltip
-            title={
-              <FormattedMessage
-                id="dashboardanalysis.analysis.introduce"
-                defaultMessage="Introduce"
-              />
-            }
-          >
-            <Icon type="info-circle-o" />
-          </Tooltip>
-        }
+        title={"当月预算"}
         total="78%"
         footer={
           <div
@@ -172,25 +108,8 @@ const IntroduceRow = ({ loading, visitData }) => (
               overflow: 'hidden',
             }}
           >
-            <Trend
-              flag="up"
-              style={{
-                marginRight: 16,
-              }}
-            >
-              <FormattedMessage
-                id="dashboardanalysis.analysis.week"
-                defaultMessage="Weekly Changes"
-              />
-              <span className={styles.trendText}>12%</span>
-            </Trend>
-            <Trend flag="down">
-              <FormattedMessage
-                id="dashboardanalysis.analysis.day"
-                defaultMessage="Weekly Changes"
-              />
-              <span className={styles.trendText}>11%</span>
-            </Trend>
+        预算总额<span className={styles.trendText} style={{marginRight:'20px'}}>{'￥' + 1220}</span>
+        已用额度<span className={styles.trendText}>{'￥' + 880}</span>
           </div>
         }
         contentHeight={46}

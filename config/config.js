@@ -108,13 +108,6 @@ export default {
               redirect: '/dashboardworkplace',
             },
             {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
-            },
-            {
               name: '个人中心',
               icon: 'user',
               path: '/accountcenter',

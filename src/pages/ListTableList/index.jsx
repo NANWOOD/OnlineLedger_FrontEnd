@@ -15,7 +15,7 @@ import { queryRule, updateRule, addRule, removeRule } from './service';
  */
 
 
-
+// let modalVis = 0
 
 const handleAdd = async fields => {
   const hide = message.loading('正在添加');
@@ -163,59 +163,7 @@ const columns = [
     ),
   },
 ];
-const columns1 = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    sorter: true,
-    render: name => `${name.first} ${name.last}`,
-    width: '20%',
-  },
-  {
-    title: 'Gender',
-    dataIndex: 'gender',
-    filters: [
-      {
-        text: 'Male',
-        value: 'male',
-      },
-      {
-        text: 'Female',
-        value: 'female',
-      },
-    ],
-    width: '20%',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-  {
-    title: '操作',
-    dataIndex: 'option',
-    valueType: 'option',
-    render: (_, record) => (
-      <>
-        <a
-          onClick={() => {
-            handleUpdateModalVisible(true);
-            setStepFormValues(record);
-          }}
-        >
-          编辑
-        </a>
-        <Divider type="vertical" />
-        <a
-          onClick={() => {
-            handleRemove(record);
-          }}
-        >
-          删除
-        </a>
-      </>
-    ),
-  },
-];
+
 
 class TableList extends React.Component {
   // const [createModalVisible, handleModalVisible] = useState(false);
@@ -226,6 +174,7 @@ class TableList extends React.Component {
     data: [],
     pagination: {},
     loading: false,
+    modalVis: 0,
   };
 
   
@@ -267,6 +216,7 @@ class TableList extends React.Component {
       ...filters,
     });
   };
+
   fetch = (params = {}) => {
     console.log('params:', params);
     this.setState({
@@ -294,6 +244,61 @@ class TableList extends React.Component {
   };
 
   render() {
+    const columns1 = [
+      {
+        title: 'Name',
+        dataIndex: 'name',
+        sorter: true,
+        render: name => `${name.first} ${name.last}`,
+        width: '20%',
+      },
+      {
+        title: 'Gender',
+        dataIndex: 'gender',
+        filters: [
+          {
+            text: 'Male',
+            value: 'male',
+          },
+          {
+            text: 'Female',
+            value: 'female',
+          },
+        ],
+        width: '20%',
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+      },
+      {
+        title: '操作',
+        dataIndex: 'option',
+        valueType: 'option',
+        render: (_, record) => (
+          <>
+            <a
+              onClick={() => {
+                // handleUpdateModalVisible(true);
+                this.setState({modalVis: 1})
+                console.log(record);
+              }}
+            >
+              编辑
+            </a>
+            <Divider type="vertical" />
+            <a
+              onClick={() => {
+                handleRemove(record);
+              }}
+            >
+              删除
+            </a>
+          </>
+        ),
+      },
+    ];
+
     return (
       <PageHeaderWrapper>
         <Card title="筛选查询" style={{marginBottom: 24,}}>
@@ -377,24 +382,27 @@ class TableList extends React.Component {
          onCancel={() => handleModalVisible(false)}
          modalVisible={createModalVisible}
         /> */}
-        {/* {stepFormValues && Object.keys(stepFormValues).length ? (
+        {/* stepFormValues && Object.keys(stepFormValues).length */}
+        {this.state.modalVis ? (
          <UpdateForm
            onSubmit={async value => {
              const success = await handleUpdate(value);
               if (success) {
-               handleModalVisible(false);
-               setStepFormValues({});
-               actionRef.reload();
+               this.setState({modalVis: 0})
+              //  setStepFormValues({});
+              //  actionRef.reload();
              }
            }}
            onCancel={() => {
-             handleUpdateModalVisible(false);
-             setStepFormValues({});
+            //  handleUpdateModalVisible(false);
+            this.setState({modalVis: 0})
+            //  setStepFormValues({});
            }}
-           updateModalVisible={updateModalVisible}
-           values={stepFormValues}
+          //  updateModalVisible={updateModalVisible}
+          updateModalVisible={this.state.modalVis}
+          //  values={stepFormValues}
          />
-        ) : null} */}
+        ) : null}
       </PageHeaderWrapper>
     );
   }

@@ -164,7 +164,7 @@ class UpdateForm extends Component {
       <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
         取消
       </Button>,
-      <Button key="submit" type="primary" onClick={() => this.handleNext(currentStep)}>
+      <Button key="submit" type="primary" onClick={() => this.handleNext()}>
         完成
       </Button>,
     ];
@@ -180,7 +180,7 @@ class UpdateForm extends Component {
           padding: '32px 40px 48px',
         }}
         destroyOnClose
-        title="规则配置"
+        title="编辑"
         visible={updateModalVisible}
         footer={this.renderFooter()}
         onCancel={() => handleUpdateModalVisible(false, values)}

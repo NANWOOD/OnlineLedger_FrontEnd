@@ -8,6 +8,8 @@ import Applications from './components/Applications';
 import styles from './Center.less';
 import CollapseBasic from './CollapseBasic';
 import TableEditCell from './TableEditCell';
+import AddButton from './components/Applications/AddButton'
+
 const operationTabList = [
   {
     key: 'applications',
@@ -65,6 +67,7 @@ class AccountCenter extends PureComponent {
       tabKey: key,
     });
   };
+
   showInput = () => {
     this.setState(
       {
@@ -73,14 +76,17 @@ class AccountCenter extends PureComponent {
       () => this.input && this.input.focus()
     );
   };
+
   saveInputRef = input => {
     this.input = input;
   };
+
   handleInputChange = e => {
     this.setState({
       inputValue: e.target.value,
     });
   };
+
   handleInputConfirm = () => {
     const { state } = this;
     const { inputValue } = state;
@@ -102,14 +108,25 @@ class AccountCenter extends PureComponent {
       inputValue: '',
     });
   };
+
   renderChildrenByTabKey = tabKey => {
     if (tabKey === 'projects') {
       return <TableEditCell />;
     }
 
     if (tabKey === 'applications') {
-      return <Applications />;
+      return <Applications/>;
     }
+
+    return null;
+  };
+
+  renderChildrenByTabKey2 = tabKey => {
+    
+    if (tabKey === 'applications') {
+      return <AddButton/>;
+    }
+
     return null;
   };
 
@@ -148,6 +165,8 @@ class AccountCenter extends PureComponent {
               activeTabKey={tabKey}
               onTabChange={this.onTabChange}
             >
+              {this.renderChildrenByTabKey2(tabKey)}
+              <div style={{marginTop:'20px'}} />
               {this.renderChildrenByTabKey(tabKey)}
             </Card>
           </Col>

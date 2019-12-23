@@ -119,21 +119,6 @@ const routes = [
             exact: true,
           },
           {
-            path: '/admin',
-            name: 'admin',
-            icon: 'crown',
-            component: __IS_BROWSER
-              ? _dvaDynamic({
-                  component: () =>
-                    import(/* webpackChunkName: "p__Admin" */ '../Admin'),
-                  LoadingComponent: require('/Users/neil/CODE/OnlineLedger/src/components/PageLoading/index')
-                    .default,
-                })
-              : require('../Admin').default,
-            authority: ['admin'],
-            exact: true,
-          },
-          {
             name: '个人中心',
             icon: 'user',
             path: '/accountcenter',

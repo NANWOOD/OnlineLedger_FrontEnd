@@ -179,7 +179,7 @@ class DashboardWorkplace extends Component {
               style={{
                 marginBottom: 24,
               }}
-              title="收支类型"
+              title="支出类型"
               bordered={false}
               bodyStyle={{
                 padding: 0,
