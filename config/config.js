@@ -135,8 +135,8 @@ export default {
             {
               name: '账目分析',
               icon: 'line-chart',
-              path: '/formadvancedform',
-              component: './FormAdvancedForm',
+              path: '/dashboardanalysis',
+              component: './DashboardAnalysis',
             },
             {
               component: './404',

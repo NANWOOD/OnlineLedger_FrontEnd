@@ -194,23 +194,23 @@ const routes = [
           {
             name: '账目分析',
             icon: 'line-chart',
-            path: '/formadvancedform',
+            path: '/dashboardanalysis',
             component: __IS_BROWSER
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import(/* webpackChunkName: 'p__FormAdvancedForm__model.js' */ '/Users/neil/CODE/OnlineLedger/src/pages/FormAdvancedForm/model.js').then(
+                    import(/* webpackChunkName: 'p__DashboardAnalysis__model.jsx' */ '/Users/neil/CODE/OnlineLedger/src/pages/DashboardAnalysis/model.jsx').then(
                       m => {
                         return { namespace: 'model', ...m.default };
                       },
                     ),
                   ],
                   component: () =>
-                    import(/* webpackChunkName: "p__FormAdvancedForm" */ '../FormAdvancedForm'),
+                    import(/* webpackChunkName: "p__DashboardAnalysis" */ '../DashboardAnalysis'),
                   LoadingComponent: require('/Users/neil/CODE/OnlineLedger/src/components/PageLoading/index')
                     .default,
                 })
-              : require('../FormAdvancedForm').default,
+              : require('../DashboardAnalysis').default,
             exact: true,
           },
           {
